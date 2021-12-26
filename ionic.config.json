@@ -1,0 +1,7 @@
+{
+  "name": "todo-list-native",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
