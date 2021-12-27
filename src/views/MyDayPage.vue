@@ -1,13 +1,6 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button color="primary"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>{{ $route.name }}</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <the-header></the-header>
     <ion-content :fullscreen="true">
       Hello
     </ion-content>
@@ -17,19 +10,17 @@
 <script>
 import { defineComponent } from 'vue';
 import {
-  IonPage, IonContent, IonMenuButton, IonHeader, IonButtons, IonToolbar, IonTitle,
+  IonPage, IonContent,
 } from '@ionic/vue';
+// eslint-disable-next-line import/no-unresolved
+import TheHeader from '@/Components/UI/TheHeader.vue';
 
 export default defineComponent({
   name: 'MyDayPage',
   components: {
+    TheHeader,
     IonPage,
     IonContent,
-    IonMenuButton,
-    IonButtons,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
   },
   setup() {
     return {
