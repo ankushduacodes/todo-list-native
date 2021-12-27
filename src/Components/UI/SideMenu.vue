@@ -1,65 +1,100 @@
 <template>
-  <ion-app>
-    <ion-split-pane when="md" content-id="main-content">
-    <side-menu></side-menu>
-      <ion-router-outlet id="main-content"></ion-router-outlet>
-    </ion-split-pane>
-  </ion-app>
+  <ion-menu content-id="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>Todos</ion-list-header>
+        <ion-note>hi@ionicframework.com</ion-note>
+        <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
+          <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url"
+                    lines="none"
+                    detail="false" class="hydrated" :class="{selected: selectedIndex === i}">
+            <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 </template>
 
 <script>
+import { defineComponent, ref } from 'vue';
 import {
-  IonApp,
-  IonRouterOutlet,
-  IonSplitPane,
+  IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  archiveOutline,
-  archiveSharp,
-  bookmarkOutline,
-  heartOutline,
-  heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
+  sunny,
+  warning,
+  codeWorking,
+  heart,
+  bookmark,
+  trash,
 } from 'ionicons/icons';
-// eslint-disable-next-line import/no-unresolved
-import SideMenu from '@/Components/UI/SideMenu.vue';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
-  name: 'App',
   components: {
-    SideMenu,
-    IonApp,
-
-    // eslint-disable-next-line vue/no-unused-components
-    IonRouterOutlet,
-    IonSplitPane,
+    IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
   },
   setup() {
+    const appPages = [
+      {
+        title: 'My Day',
+        url: '/myday',
+        id: 'myday',
+        iosIcon: sunny,
+        mdIcon: sunny,
+      },
+      {
+        title: 'Important',
+        url: '/important',
+        id: 'important',
+        iosIcon: warning,
+        mdIcon: warning,
+      },
+      {
+        title: 'All Tasks',
+        url: '/alltasks',
+        id: 'alltasks',
+        iosIcon: codeWorking,
+        mdIcon: codeWorking,
+      },
+      {
+        title: 'Favourite',
+        url: '/favourite',
+        id: 'favourite',
+        iosIcon: heart,
+        mdIcon: heart,
+      },
+      {
+        title: 'Bookmarks',
+        url: '/bookmarks',
+        id: 'bookmarks',
+        iosIcon: bookmark,
+        mdIcon: bookmark,
+      },
+      {
+        title: 'Trash',
+        url: '/trash',
+        id: 'trash',
+        iosIcon: trash,
+        mdIcon: trash,
+      },
+    ];
+    const selectedIndex = ref(0);
+    const route = useRoute();
+
+    selectedIndex.value = appPages.findIndex(
+      (page) => page.title.toLowerCase() === route.name.toLowerCase(),
+    );
     return {
-      archiveOutline,
-      archiveSharp,
-      bookmarkOutline,
-      heartOutline,
-      heartSharp,
-      mailOutline,
-      mailSharp,
-      paperPlaneOutline,
-      paperPlaneSharp,
-      trashOutline,
-      trashSharp,
-      warningOutline,
-      warningSharp,
+      appPages,
+      selectedIndex,
     };
   },
+
 });
 </script>
 
