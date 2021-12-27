@@ -5,8 +5,8 @@
         <ion-list-header>Todos</ion-list-header>
         <ion-note>hi@ionicframework.com</ion-note>
         <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-          <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url"
-                    lines="none"
+          <ion-item @click="selectedIndex = i" router-direction="root"
+                    :router-link="p.url" :router-animation="false" ines="none"
                     detail="false" class="hydrated" :class="{selected: selectedIndex === i}">
             <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import {
   IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
 } from '@ionic/vue';
@@ -83,12 +83,20 @@ export default defineComponent({
         mdIcon: trash,
       },
     ];
-    const selectedIndex = ref(0);
     const route = useRoute();
+    const selectedIndex = ref(0);
 
-    selectedIndex.value = appPages.findIndex(
-      (page) => page.title.toLowerCase() === route.name.toLowerCase(),
-    );
+    function selectedRoute(rout) {
+      return appPages.findIndex(
+        (page) => page.title.toLowerCase() === rout.name.toLowerCase(),
+      );
+    }
+
+    selectedIndex.value = selectedRoute(route);
+    watch(route, (oldVal, currVal) => {
+      selectedIndex.value = selectedRoute(currVal);
+    });
+
     return {
       appPages,
       selectedIndex,

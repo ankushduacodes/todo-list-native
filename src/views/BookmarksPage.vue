@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <the-header></the-header>
+    <the-header :heading="heading"></the-header>
   </ion-page>
 </template>
 
@@ -16,7 +16,12 @@ export default defineComponent({
     TheHeader,
     IonPage,
   },
-
+  setup() {
+    const heading = 'Bookmarks';
+    return {
+      heading,
+    };
+  },
 });
 </script>
 

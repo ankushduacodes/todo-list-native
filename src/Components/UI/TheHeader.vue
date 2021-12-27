@@ -4,7 +4,7 @@
       <ion-buttons slot="start">
         <ion-menu-button color="primary"></ion-menu-button>
       </ion-buttons>
-      <ion-title>{{ $route.name }}</ion-title>
+      <ion-title>{{ heading }}</ion-title>
     </ion-toolbar>
   </ion-header>
 </template>
@@ -23,6 +23,12 @@ export default defineComponent({
     IonHeader,
     IonToolbar,
     IonTitle,
+  },
+  props: {
+    heading: {
+      type: String,
+      required: true,
+    },
   },
 });
 </script>
