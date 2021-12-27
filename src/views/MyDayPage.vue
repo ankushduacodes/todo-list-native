@@ -8,7 +8,7 @@
         <ion-title>{{ $route.name }}</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content :fullscreen="true">
       Hello
     </ion-content>
   </ion-page>
@@ -21,6 +21,7 @@ import {
 } from '@ionic/vue';
 
 export default defineComponent({
+  name: 'MyDayPage',
   components: {
     IonPage,
     IonContent,
