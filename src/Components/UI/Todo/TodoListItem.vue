@@ -2,7 +2,7 @@
   <ion-item>
     <ion-checkbox slot="start" button></ion-checkbox>
     <ion-label>ion-item in a card, icon left, button right</ion-label>
-    <ion-button button @click="changeFavBtn" slot="end" color="danger">
+    <ion-button @click="changeFavBtn" slot="end" color="danger">
       <ion-icon :ios="favBtn" :md="favBtn"></ion-icon>
     </ion-button>
   </ion-item>
@@ -19,6 +19,12 @@ import { heartOutline, heart } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'TodoListItem',
+  props: {
+    todo: {
+      type: Object,
+      required: true,
+    },
+  },
   components: {
     IonItem,
     IonCheckbox,
@@ -30,7 +36,7 @@ export default defineComponent({
     const favBtn = ref(heartOutline);
 
     function changeFavBtn() {
-      favBtn.value = heart;
+      favBtn.value = favBtn.value === heart ? heartOutline : heart;
     }
 
     return {
