@@ -32,7 +32,6 @@ export default defineComponent({
   components: {
     IonItem,
     IonCheckbox,
-    // eslint-disable-next-line vue/no-unused-components
     IonIcon,
     IonButton,
   },
@@ -56,8 +55,5 @@ export default defineComponent({
   border-radius: 5px;
   max-width: 98%;
   margin: 15px auto auto auto;
-}
-ion-checkbox .item-cover{
-  width: 10px;
 }
 </style>

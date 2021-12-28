@@ -5,7 +5,7 @@
         <ion-list-header>Todos</ion-list-header>
         <ion-note>hi@ionicframework.com</ion-note>
         <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-          <ion-item @click="selectedIndex = i" router-direction="root"
+          <ion-item router-direction="root"
                     :router-link="p.url" :router-animation="false" ines="none"
                     detail="false" class="hydrated" :class="{selected: selectedIndex === i}">
             <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
@@ -18,7 +18,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from 'vue';
+import {
+  defineComponent, onMounted, ref, watch,
+} from 'vue';
 import {
   IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
 } from '@ionic/vue';
@@ -91,10 +93,11 @@ export default defineComponent({
         (page) => page.title.toLowerCase() === rout.name.toLowerCase(),
       );
     }
-
-    selectedIndex.value = selectedRoute(route);
     watch(route, (oldVal, currVal) => {
       selectedIndex.value = selectedRoute(currVal);
+    });
+    onMounted(() => {
+      selectedIndex.value = selectedRoute(route);
     });
 
     return {
