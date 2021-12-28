@@ -2,20 +2,18 @@
   <ion-item>
     <ion-checkbox slot="start" button :checked="checked"></ion-checkbox>
     <p class="ion-text-wrap item-cover" :contenteditable="true">{{ todo.item }}</p>
-    <ion-button @click="changeFavBtn" slot="end" color="danger">
-      <ion-icon :ios="favBtn" :md="favBtn"></ion-icon>
-    </ion-button>
+    <todo-action-button></todo-action-button>
   </ion-item>
 </template>
 
 <script>
 
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import {
-  IonItem, IonCheckbox, IonIcon, IonButton,
+  IonItem, IonCheckbox,
 } from '@ionic/vue';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { heartOutline, heart } from 'ionicons/icons';
+// eslint-disable-next-line import/no-unresolved
+import TodoActionButton from '@/Components/UI/Todo/TodoActionButton.vue';
 
 export default defineComponent({
   name: 'TodoListItem',
@@ -30,21 +28,12 @@ export default defineComponent({
     },
   },
   components: {
+    TodoActionButton,
     IonItem,
     IonCheckbox,
-    IonIcon,
-    IonButton,
   },
   setup() {
-    const favBtn = ref(heartOutline);
-
-    function changeFavBtn() {
-      favBtn.value = favBtn.value === heart ? heartOutline : heart;
-    }
-
     return {
-      changeFavBtn,
-      favBtn,
     };
   },
 });
