@@ -1,7 +1,7 @@
 <template>
   <ion-item>
-    <ion-checkbox slot="start" button></ion-checkbox>
-    <ion-label>ion-item in a card, icon left, button right</ion-label>
+    <ion-checkbox slot="start" button :checked="checked"></ion-checkbox>
+    <p class="ion-text-wrap item-cover" :contenteditable="true">{{ todo.item }}</p>
     <ion-button @click="changeFavBtn" slot="end" color="danger">
       <ion-icon :ios="favBtn" :md="favBtn"></ion-icon>
     </ion-button>
@@ -12,7 +12,7 @@
 
 import { defineComponent, ref } from 'vue';
 import {
-  IonItem, IonCheckbox, IonLabel, IonIcon, IonButton,
+  IonItem, IonCheckbox, IonIcon, IonButton,
 } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { heartOutline, heart } from 'ionicons/icons';
@@ -24,11 +24,15 @@ export default defineComponent({
       type: Object,
       required: true,
     },
+    checked: {
+      type: Boolean,
+      required: true,
+    },
   },
   components: {
     IonItem,
     IonCheckbox,
-    IonLabel,
+    // eslint-disable-next-line vue/no-unused-components
     IonIcon,
     IonButton,
   },
@@ -53,9 +57,7 @@ export default defineComponent({
   max-width: 98%;
   margin: 15px auto auto auto;
 }
-
-.done-btn, .fav-btn {
-  max-width: 30px;
-  margin-right: 10px;
+ion-checkbox .item-cover{
+  width: 10px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <ion-app>
     <ion-split-pane when="md" content-id="main-content">
-    <side-menu></side-menu>
+      <side-menu></side-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
   </ion-app>
@@ -63,5 +63,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
+:root {
+  --ion-safe-area-top: 20px;
+  --ion-safe-area-bottom: 22px;
+}
 </style>

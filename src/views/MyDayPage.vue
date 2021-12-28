@@ -2,7 +2,8 @@
   <ion-page>
     <the-header :heading="heading"></the-header>
     <ion-content :fullscreen="true">
-      <todo-list-item></todo-list-item>
+      <todo-list header="Pending" :todo-list="todoList"></todo-list>
+      <todo-list header="Done" :todo-list="todoList"></todo-list>
     </ion-content>
   </ion-page>
 </template>
@@ -15,20 +16,47 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import TheHeader from '@/Components/UI/TheHeader.vue';
 // eslint-disable-next-line import/no-unresolved
-import TodoListItem from '@/Components/UI/Todo/TodoListItem.vue';
+import TodoList from '@/Components/UI/Todo/TodoList.vue';
 
 export default defineComponent({
   name: 'MyDayPage',
   components: {
-    TodoListItem,
+    TodoList,
     TheHeader,
     IonPage,
     IonContent,
   },
   setup() {
     const heading = 'My Day';
+    const todoList = [
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 123,
+      },
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 124,
+      },
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 125,
+      },
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 126,
+      },
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 127,
+      },
+      {
+        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+        id: 128,
+      },
+    ];
     return {
       heading,
+      todoList,
     };
   },
 });
