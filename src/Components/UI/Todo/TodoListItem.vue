@@ -41,8 +41,6 @@ export default defineComponent({
 
 <style scoped>
 .item {
-  border-radius: 5px;
-  max-width: 98%;
-  margin: 15px auto auto auto;
+  margin: 10px auto auto auto;
 }
 </style>

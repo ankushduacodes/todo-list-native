@@ -12,11 +12,13 @@
 <script>
 import { defineComponent } from 'vue';
 // eslint-disable-next-line import/no-unresolved
+import { IonListHeader, IonList } from '@ionic/vue';
+// eslint-disable-next-line import/no-unresolved
 import TodoListItem from '@/Components/UI/Todo/TodoListItem.vue';
 
 export default defineComponent({
   name: 'TodoList',
-  components: { TodoListItem },
+  components: { TodoListItem, IonListHeader, IonList },
   props: {
     header: {
       type: String,

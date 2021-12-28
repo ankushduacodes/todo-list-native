@@ -9,10 +9,12 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import {
   IonPage, IonContent,
 } from '@ionic/vue';
+// eslint-disable-next-line import/no-unresolved
+import { useStore } from 'vuex';
 // eslint-disable-next-line import/no-unresolved
 import TheHeader from '@/Components/UI/TheHeader.vue';
 // eslint-disable-next-line import/no-unresolved
@@ -28,32 +30,8 @@ export default defineComponent({
   },
   setup() {
     const heading = 'My Day';
-    const todoList = [
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 123,
-      },
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 124,
-      },
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 125,
-      },
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 126,
-      },
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 127,
-      },
-      {
-        item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
-        id: 128,
-      },
-    ];
+    const store = useStore();
+    const todoList = computed(() => store.getters['todos/getAllTodos']);
     return {
       heading,
       todoList,

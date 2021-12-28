@@ -9,6 +9,33 @@ export default {
   namespaced: true,
   state() {
     return {
+      todoList: [
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 123,
+          tags: ['important', 'favorite', 'bookmark'],
+        },
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 124,
+        },
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 125,
+        },
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 126,
+        },
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 127,
+        },
+        {
+          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          id: 128,
+        },
+      ],
     };
   },
   getters,
