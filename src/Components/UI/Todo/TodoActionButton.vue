@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import { actionSheetController, IonButton, IonIcon } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  menu, trash, heart, close,
+  menu, trash, heart, close, bookmark, warning,
 } from 'ionicons/icons';
 
 export default defineComponent({
@@ -43,6 +43,24 @@ export default defineComponent({
               id: 'favourite-button',
               handler: () => {
                 console.log('Favorite clicked');
+              },
+            },
+            {
+              text: 'Mark as Important',
+              icon: warning,
+              role: 'important',
+              id: 'important-button',
+              handler: () => {
+                console.log('important clicked');
+              },
+            },
+            {
+              text: 'Bookmark',
+              icon: bookmark,
+              role: 'bookmark',
+              id: 'bookmark-button',
+              handler: () => {
+                console.log('bookmark clicked');
               },
             },
             {
