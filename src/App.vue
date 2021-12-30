@@ -16,19 +16,7 @@ import {
 import { defineComponent } from 'vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  archiveOutline,
-  archiveSharp,
-  bookmarkOutline,
-  heartOutline,
-  heartSharp,
-  mailOutline,
-  mailSharp,
-  paperPlaneOutline,
-  paperPlaneSharp,
-  trashOutline,
-  trashSharp,
-  warningOutline,
-  warningSharp,
+  add,
 } from 'ionicons/icons';
 // eslint-disable-next-line import/no-unresolved
 import SideMenu from '@/Components/UI/SideMenu.vue';
@@ -36,28 +24,16 @@ import SideMenu from '@/Components/UI/SideMenu.vue';
 export default defineComponent({
   name: 'App',
   components: {
+    AddNewTodo,
     SideMenu,
     IonApp,
-
     // eslint-disable-next-line vue/no-unused-components
     IonRouterOutlet,
     IonSplitPane,
   },
   setup() {
     return {
-      archiveOutline,
-      archiveSharp,
-      bookmarkOutline,
-      heartOutline,
-      heartSharp,
-      mailOutline,
-      mailSharp,
-      paperPlaneOutline,
-      paperPlaneSharp,
-      trashOutline,
-      trashSharp,
-      warningOutline,
-      warningSharp,
+      add,
     };
   },
 });
