@@ -1,12 +1,12 @@
 <template>
-  <ion-list>
+  <ul>
     <ion-list-header>
       <h4>{{ header }}</h4>
     </ion-list-header>
     <template v-for="todo in todoList" :key="todo.id">
-      <todo-list-item :todo="todo" :checked="header.toLowerCase() === 'done'"></todo-list-item>
+      <todo-list-item :todo="todo" :checked="todo.done"></todo-list-item>
     </template>
-  </ion-list>
+  </ul>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ import TodoListItem from '@/Components/UI/Todo/TodoListItem.vue';
 
 export default defineComponent({
   name: 'TodoList',
+  // eslint-disable-next-line vue/no-unused-components
   components: { TodoListItem, IonListHeader, IonList },
   props: {
     header: {
@@ -33,5 +34,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+ul {
+  padding: 5px;
+}
 
 </style>
