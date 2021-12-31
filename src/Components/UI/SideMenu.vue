@@ -4,13 +4,15 @@
       <ion-list id="inbox-list">
         <ion-list-header>Todos</ion-list-header>
         <ion-note>hi@ionicframework.com</ion-note>
-        <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-          <ion-item router-direction="root"
-                    :router-link="p.url" :router-animation="false" ines="none"
-                    detail="false" class="hydrated" :class="{selected: selectedIndex === i}">
-            <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
-            <ion-label>{{ p.title }}</ion-label>
-          </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <template v-for="(p, i) in appPages" :key="i">
+            <ion-item router-direction="root"
+                      :router-link="p.url" :router-animation="false" lines="none"
+                      detail="false" class="hydrated" :class="{selected: selectedIndex === i}">
+              <ion-icon slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </template>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
@@ -27,12 +29,12 @@ import {
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  sunny,
   warning,
   codeWorking,
   heart,
   bookmark,
   trash,
+  add,
 } from 'ionicons/icons';
 import { useRoute } from 'vue-router';
 
@@ -43,18 +45,11 @@ export default defineComponent({
   setup() {
     const appPages = [
       {
-        title: 'My Day',
-        url: '/myday',
-        id: 'myday',
-        iosIcon: sunny,
-        mdIcon: sunny,
-      },
-      {
-        title: 'Important',
-        url: '/important',
-        id: 'important',
-        iosIcon: warning,
-        mdIcon: warning,
+        title: 'Add',
+        url: '/add',
+        id: 'add',
+        iosIcon: add,
+        mdIcon: add,
       },
       {
         title: 'All Tasks',
@@ -62,6 +57,13 @@ export default defineComponent({
         id: 'alltasks',
         iosIcon: codeWorking,
         mdIcon: codeWorking,
+      },
+      {
+        title: 'Important',
+        url: '/important',
+        id: 'important',
+        iosIcon: warning,
+        mdIcon: warning,
       },
       {
         title: 'Favourite',
@@ -93,6 +95,7 @@ export default defineComponent({
         (page) => page.title.toLowerCase() === rout.name.toLowerCase(),
       );
     }
+
     watch(route, (oldVal, currVal) => {
       selectedIndex.value = selectedRoute(currVal);
     });

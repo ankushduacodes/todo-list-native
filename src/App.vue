@@ -24,7 +24,6 @@ import SideMenu from '@/Components/UI/SideMenu.vue';
 export default defineComponent({
   name: 'App',
   components: {
-    AddNewTodo,
     SideMenu,
     IonApp,
     // eslint-disable-next-line vue/no-unused-components

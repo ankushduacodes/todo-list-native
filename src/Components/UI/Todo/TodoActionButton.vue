@@ -21,8 +21,7 @@ export default defineComponent({
     async function presentActionSheet() {
       const actionSheet = await actionSheetController
         .create({
-          header: 'options',
-          cssClass: 'my-custom-class',
+          header: 'Options',
           buttons: [
             {
               text: 'Delete',
