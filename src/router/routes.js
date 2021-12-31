@@ -1,15 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
-import myDayPage from '@/views/MyDayPage.vue';
+import allTasksPage from '../views/AllTasksPage.vue';
 
 export default [
   {
     path: '',
-    redirect: '/myday',
-  },
-  {
-    path: '/myday',
-    name: 'My day',
-    component: myDayPage,
+    redirect: '/alltasks',
   },
   {
     path: '/important',
@@ -19,7 +14,7 @@ export default [
   {
     path: '/alltasks',
     name: 'All Tasks',
-    component: () => import(/* webpackChunkName: "alltasks" */ '../views/AllTasksPage.vue'),
+    component: allTasksPage,
   },
   {
     path: '/favourite',
@@ -30,6 +25,11 @@ export default [
     path: '/bookmarks',
     name: 'Bookmarks',
     component: () => import(/* webpackChunkName: "bookmarks" */ '../views/BookmarksPage.vue'),
+  },
+  {
+    path: '/add',
+    name: 'Add',
+    component: () => import(/* webpackChunkName: "addTodo" */ '../views/AddTodoPage.vue'),
   },
   {
     path: '/trash',
