@@ -7,6 +7,8 @@
           <ion-label position="floating">Todo:</ion-label>
           <ion-textarea v-model="todoInput"></ion-textarea>
         </ion-item>
+        <span ref="span" class="invis-span">Please enter a valid todo text</span>
+        <br>
         <ion-chip class="ion-margin" @click="changeBookColor" :color="bookmarkColor">
           <ion-icon :md="bookmark" :ios="bookmark"></ion-icon>
           <ion-label>Bookmark</ion-label>
@@ -52,6 +54,7 @@ export default {
     IonItem,
     IonButton,
   },
+  methods: {},
   setup() {
     const store = useStore();
     const heading = 'Add New Todo';
@@ -92,7 +95,20 @@ export default {
       todoInput.value = '';
     }
 
-    function addNewTodo() {
+    const span = ref();
+    function checkInput() {
+      console.log(todoInput.value);
+      if ((todoInput.value.length === 0)) {
+        span.value.classList.add('show-span');
+        span.value.classList.remove('invis-span');
+      } else {
+        span.value.classList.remove('show-span');
+        span.value.classList.add('invis-span');
+      }
+    }
+
+    async function addNewTodo() {
+      checkInput();
       if (!todoInput.value.length) {
         // TODO show a toast
         return;
@@ -105,9 +121,9 @@ export default {
         favourite: !!favouriteColor.value.length,
         important: !!importantColor.value.length,
       };
-      console.log(newTodo);
       resetForm();
-      store.dispatch('addNewTodo', { newTodo });
+      store.dispatch('todos/addTodo', { newTodo });
+
       // TODO get confirmation from above action and show a toast
     }
 
@@ -123,6 +139,7 @@ export default {
       changeFavColor,
       changeBookColor,
       addNewTodo,
+      span,
       todoInput,
     };
   },
@@ -130,5 +147,13 @@ export default {
 </script>
 
 <style scoped>
+.show-span {
+  color: red;
+  padding: 0;
+  margin-left: 15px;
+}
 
+.invis-span {
+  visibility: hidden;
+}
 </style>
