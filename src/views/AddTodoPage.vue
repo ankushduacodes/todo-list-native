@@ -66,7 +66,7 @@ export default {
       if (importantColor.value.length) {
         importantColor.value = '';
       } else {
-        importantColor.value = 'primary';
+        importantColor.value = 'danger';
       }
     }
 
@@ -82,7 +82,7 @@ export default {
       if (bookmarkColor.value.length) {
         bookmarkColor.value = '';
       } else {
-        bookmarkColor.value = 'primary';
+        bookmarkColor.value = 'warning';
       }
     }
 
