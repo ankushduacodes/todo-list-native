@@ -1,6 +1,9 @@
 <template>
   <ion-item>
-    <ion-checkbox slot="start" button :checked="checked"></ion-checkbox>
+    <ion-checkbox @click="todoStateChange(todo)"
+                  :checked="todo.done"
+                  slot="start">
+    </ion-checkbox>
     <p class="ion-text-wrap item-cover" :contenteditable="true">{{ todo.item }}</p>
     <todo-action-button></todo-action-button>
   </ion-item>
@@ -12,6 +15,7 @@ import { defineComponent } from 'vue';
 import {
   IonItem, IonCheckbox,
 } from '@ionic/vue';
+import { useStore } from 'vuex';
 // eslint-disable-next-line import/no-unresolved
 import TodoActionButton from '@/Components/UI/Todo/TodoActionButton.vue';
 
@@ -22,10 +26,6 @@ export default defineComponent({
       type: Object,
       required: true,
     },
-    checked: {
-      type: Boolean,
-      required: true,
-    },
   },
   components: {
     TodoActionButton,
@@ -33,7 +33,17 @@ export default defineComponent({
     IonCheckbox,
   },
   setup() {
+    const store = useStore();
+
+    async function todoStateChange(todo) {
+      if (!todo.done) {
+        await store.dispatch('todos/markDone', { todo });
+      } else {
+        await store.dispatch('todos/markUndone', { todo });
+      }
+    }
     return {
+      todoStateChange,
     };
   },
 });

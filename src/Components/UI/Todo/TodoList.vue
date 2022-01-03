@@ -4,7 +4,7 @@
       <h4>{{ header }}</h4>
     </ion-list-header>
     <template v-for="todo in todoList" :key="todo.id">
-      <todo-list-item :todo="todo" :checked="todo.done"></todo-list-item>
+      <todo-list-item :todo="todo"></todo-list-item>
     </template>
   </ul>
 </template>
