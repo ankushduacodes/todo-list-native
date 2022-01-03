@@ -1,6 +1,6 @@
 const getters = {
   getAllTodos(state) {
-    return state.todoList;
+    return state.todoList.filter((todo) => !todo.deleted);
   },
   getDoneAllTodos(state) {
     return getters.getAllTodos(state).filter((todo) => todo.done);
@@ -34,6 +34,15 @@ const getters = {
   },
   getPendingImportantTodo(state) {
     return getters.getImportantTodo(state).filter((todo) => !todo.done);
+  },
+  getDeletedTodo(state) {
+    return state.todoList.filter((todo) => todo.deleted);
+  },
+  getDoneDeletedTodo(state) {
+    return getters.getDeletedTodo(state).filter((todo) => todo.done);
+  },
+  getPendingDeletedTodo(state) {
+    return getters.getDeletedTodo(state).filter((todo) => !todo.done);
   },
 };
 
