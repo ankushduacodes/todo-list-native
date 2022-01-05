@@ -176,6 +176,10 @@ ion-menu.md ion-item.selected ion-icon {
   color: var(--ion-color-primary);
 }
 
+ion-menu.md ion-item:hover {
+  --background: rgba(var(--ion-color-secondary-rgb), 0.14);
+}
+
 ion-menu.md ion-item ion-icon {
   color: #616e7e;
 }
