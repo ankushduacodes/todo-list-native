@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import allTasksPage from '@/views/AllTasksPage.vue';
-// eslint-disable-next-line import/no-unresolved
-import ImportantPage from '@/views/ImportantPage.vue';
+import allTasksPage from '../views/AllTasksPage.vue';
 
 export default [
   {
@@ -11,7 +9,7 @@ export default [
   {
     path: '/important',
     name: 'Important',
-    component: ImportantPage,
+    component: () => import(/* webpackChunkName: "important" */ '../views/ImportantPage.vue'),
   },
   {
     path: '/alltasks',
