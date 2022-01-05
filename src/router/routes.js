@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import allTasksPage from '@/views/AllTasksPage.vue';
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/no-unresolved
 import ImportantPage from '@/views/ImportantPage.vue';
 
 export default [
