@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import { IonicVue } from '@ionic/vue';
 import App from './App.vue';
 import router from './router';
+// eslint-disable-next-line import/no-relative-packages
+import '../node_modules/nprogress/nprogress.css';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';

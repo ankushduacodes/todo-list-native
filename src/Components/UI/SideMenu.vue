@@ -128,6 +128,10 @@ ion-menu.md ion-list {
   padding: 20px 0;
 }
 
+ion-item {
+  cursor: pointer;
+}
+
 ion-menu.md ion-note {
   margin-bottom: 30px;
 }
