@@ -4,7 +4,10 @@
                   :checked="todo.done"
                   slot="start">
     </ion-checkbox>
-    <p class="ion-text-wrap item-cover" :contenteditable="true">{{ todo.item }}</p>
+    <p :style="(todo.deleted || todo.done) ? {textDecoration: 'line-through'} : {}"
+       class="ion-text-wrap item-cover" :contenteditable="true">{{
+        todo.item
+      }}</p>
     <todo-action-button></todo-action-button>
   </ion-item>
 </template>
@@ -42,6 +45,7 @@ export default defineComponent({
         await store.dispatch('todos/markUndone', { todo });
       }
     }
+
     return {
       todoStateChange,
     };
