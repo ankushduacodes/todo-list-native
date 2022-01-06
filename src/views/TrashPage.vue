@@ -2,8 +2,7 @@
   <ion-page>
     <the-header :heading="heading"></the-header>
     <ion-content :fullscreen="true">
-      <todo-list v-if="getPending.length" header="Pending" :todo-list="getPending"></todo-list>
-      <todo-list v-if="getDone.length" header="Done" :todo-list="getDone"></todo-list>
+      <todo-list v-if="getAll.length" header="Deleted" :todo-list="getAll"></todo-list>
     </ion-content>
   </ion-page>
 </template>
