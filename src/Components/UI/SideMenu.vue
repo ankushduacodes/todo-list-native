@@ -92,7 +92,7 @@ export default defineComponent({
 
     function selectedRoute(rout) {
       return appPages.findIndex(
-        (page) => page.title.toLowerCase() === rout.name.toLowerCase(),
+        (page) => page?.title?.toLowerCase() === rout?.name?.toLowerCase(),
       );
     }
 

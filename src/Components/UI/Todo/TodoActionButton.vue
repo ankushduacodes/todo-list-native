@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import { actionSheetController, IonButton, IonIcon } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  menu, trash, heart, close, bookmark, warning,
+  menu, trash, heart, close, bookmark, warning, pencil,
 } from 'ionicons/icons';
 
 export default defineComponent({
@@ -23,6 +23,15 @@ export default defineComponent({
         .create({
           header: 'Options',
           buttons: [
+            {
+              text: 'Edit',
+              icon: pencil,
+              role: 'edit',
+              id: 'edit-button',
+              handler: () => {
+                console.log('Edit clicked');
+              },
+            },
             {
               text: 'Delete',
               role: 'delete',

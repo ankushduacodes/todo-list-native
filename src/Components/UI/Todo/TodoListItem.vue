@@ -1,13 +1,13 @@
 <template>
-  <ion-item>
+  <ion-item :router-link="`/task/${todo.id}`">
     <ion-checkbox @click="todoStateChange(todo)"
                   :checked="todo.done"
                   slot="start">
     </ion-checkbox>
     <p :style="(todo.deleted || todo.done) ? {textDecoration: 'line-through'} : {}"
-       class="ion-text-wrap item-cover" :contenteditable="true">{{
-        todo.item
-      }}</p>
+       class="ion-text-wrap item-cover">
+      {{ todo.item }}
+    </p>
     <todo-action-button></todo-action-button>
   </ion-item>
 </template>

@@ -35,6 +35,7 @@ import {
 import { bookmark, heart, warning } from 'ionicons/icons';
 import { ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 // eslint-disable-next-line import/no-unresolved
 import TheHeader from '@/Components/UI/TheHeader.vue';
 // eslint-disable-next-line import/extensions,import/no-unresolved
@@ -120,10 +121,13 @@ export default {
         bookmark: !!bookmarkColor.value.length,
         favourite: !!favouriteColor.value.length,
         important: !!importantColor.value.length,
+        date: Date.now(),
       };
       resetForm();
-      store.dispatch('todos/addTodo', { newTodo });
-
+      console.log(newTodo);
+      await store.dispatch('todos/addTodo', { newTodo });
+      const router = useRouter();
+      await router.push('/allTasks');
       // TODO get confirmation from above action and show a toast
     }
 
