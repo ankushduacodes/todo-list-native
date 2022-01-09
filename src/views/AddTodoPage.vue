@@ -29,7 +29,8 @@
 
 <script>
 import {
-  IonPage, IonContent, IonIcon, IonChip, IonLabel, IonCard, IonTextarea, IonItem, IonButton,
+  IonPage, IonContent, IonIcon, IonChip, IonLabel,
+  IonCard, IonTextarea, IonItem, IonButton,
 } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { bookmark, heart, warning } from 'ionicons/icons';
@@ -97,8 +98,8 @@ export default {
     }
 
     const span = ref();
+
     function checkInput() {
-      console.log(todoInput.value);
       if ((todoInput.value.length === 0)) {
         span.value.classList.add('show-span');
         span.value.classList.remove('invis-span');
@@ -107,6 +108,8 @@ export default {
         span.value.classList.add('invis-span');
       }
     }
+
+    const router = useRouter();
 
     async function addNewTodo() {
       checkInput();
@@ -126,8 +129,7 @@ export default {
       resetForm();
       console.log(newTodo);
       await store.dispatch('todos/addTodo', { newTodo });
-      const router = useRouter();
-      await router.push('/allTasks');
+      router.push('/');
       // TODO get confirmation from above action and show a toast
     }
 
