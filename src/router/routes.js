@@ -12,11 +12,6 @@ export default [
     component: () => import(/* webpackChunkName: "important" */ '../views/ImportantPage.vue'),
   },
   {
-    path: '/task/:id',
-    name: 'Todo Task Details',
-    component: () => import(/* webpackChunkName: "important" */ '../views/TodoDetailsPage.vue'),
-  },
-  {
     path: '/alltasks',
     name: 'All Tasks',
     component: allTasksPage,
