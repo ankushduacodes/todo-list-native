@@ -5,7 +5,7 @@
                   slot="start">
     </ion-checkbox>
     <p :style="(todo.deleted || todo.done) ? {textDecoration: 'line-through'} : {}"
-       class="ion-text-wrap item-cover" contenteditable="true">
+       class="ion-text-wrap item-cover" :contenteditable="!(todo.done || todo.deleted)">
       {{ todo.item }}
     </p>
     <todo-action-button :todo="todo"></todo-action-button>

@@ -13,6 +13,9 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </template>
+          <ion-item>
+            <ion-button expand="block" class="ion-margin">Logout</ion-button>
+          </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
@@ -115,6 +118,16 @@ export default defineComponent({
 <style scoped>
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+ion-button {
+  width: 100%;
+  height: 80%;
+  margin: auto;
+}
+
+ion-item ion-button {
+  margin-left: 15px
 }
 
 ion-menu.md ion-content {
