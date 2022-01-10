@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 import { actionSheetController, IonButton, IonIcon } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  menu, trash, heart, close, bookmark, warning, pencil,
+  menu, trash, heart, close, bookmark, warning, pencil, arrowBackCircle, heartHalf,
 } from 'ionicons/icons';
 
 export default defineComponent({
@@ -17,8 +17,20 @@ export default defineComponent({
     IonIcon,
     IonButton,
   },
-  setup() {
+  props: {
+    todo: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup(props) {
     async function presentActionSheet() {
+      const deleteBtn = props.todo.deleted ? 'Restore' : 'Delete';
+      const deleteIcon = props.todo.deleted ? arrowBackCircle : trash;
+      const FavBtn = props.todo.favourite ? 'Unfavourite' : 'Favourite';
+      const FavIcon = props.todo.favourite ? heartHalf : heart;
+      const ImpBtn = props.todo.deleted ? 'Restore' : 'Delete';
+      const BookmarkBtn = props.todo.deleted ? 'Restore' : 'Delete';
       const actionSheet = await actionSheetController
         .create({
           header: 'Options',
@@ -33,9 +45,9 @@ export default defineComponent({
               },
             },
             {
-              text: 'Delete',
+              text: deleteBtn,
               role: 'delete',
-              icon: trash,
+              icon: deleteIcon,
               id: 'delete-button',
               data: {
                 type: 'delete',
@@ -45,16 +57,16 @@ export default defineComponent({
               },
             },
             {
-              text: 'Favorite',
+              text: FavBtn,
               role: 'favourite',
-              icon: heart,
+              icon: FavIcon,
               id: 'favourite-button',
               handler: () => {
                 console.log('Favorite clicked');
               },
             },
             {
-              text: 'Mark as Important',
+              text: ImpBtn,
               icon: warning,
               role: 'important',
               id: 'important-button',
@@ -63,7 +75,7 @@ export default defineComponent({
               },
             },
             {
-              text: 'Bookmark',
+              text: BookmarkBtn,
               icon: bookmark,
               role: 'bookmark',
               id: 'bookmark-button',
