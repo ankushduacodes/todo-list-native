@@ -11,7 +11,7 @@ export default {
     return {
       todoList: [
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsnkmnjbhgvfcvgbhnjmk,lmknjbhvgcgvbhjnkml,mknjbhvgcfvghbjnkm',
+          item: '1',
           id: 123,
           done: false,
           bookmark: false,
@@ -20,7 +20,7 @@ export default {
           deleted: true,
         },
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          item: '2',
           id: 124,
           done: false,
           bookmark: false,
@@ -29,7 +29,7 @@ export default {
           deleted: false,
         },
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          item: '3',
           id: 125,
           done: false,
           bookmark: false,
@@ -38,7 +38,7 @@ export default {
           deleted: false,
         },
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          item: '4',
           id: 126,
           done: false,
           bookmark: false,
@@ -47,16 +47,16 @@ export default {
           deleted: false,
         },
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          item: '5',
           id: 127,
-          done: false,
+          done: true,
           bookmark: false,
           important: false,
           favourite: false,
-          deleted: false,
+          deleted: true,
         },
         {
-          item: 'sdmkjnfbhsnjamkl,mknjbhdjnsml isdcndins sdjnjncnxncsn',
+          item: '6',
           id: 128,
           done: true,
           bookmark: false,

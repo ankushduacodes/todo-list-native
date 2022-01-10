@@ -38,12 +38,6 @@ const getters = {
   getDeletedTodo(state) {
     return state.todoList.filter((todo) => todo.deleted);
   },
-  getDoneDeletedTodo(state) {
-    return getters.getDeletedTodo(state).filter((todo) => todo.done);
-  },
-  getPendingDeletedTodo(state) {
-    return getters.getDeletedTodo(state).filter((todo) => !todo.done);
-  },
 };
 
 export default getters;
