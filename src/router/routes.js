@@ -42,4 +42,10 @@ export default [
     component: () => import(/* webpackChunkName: "trash" */ '../views/TrashPage.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: () => import(/* webpackChunkName: "trash" */ '../views/AuthPage.vue'),
+    meta: { requiresUnauth: true },
+  },
 ];
