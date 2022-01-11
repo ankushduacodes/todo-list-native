@@ -27,7 +27,8 @@ import {
   defineComponent, onMounted, ref, watch,
 } from 'vue';
 import {
-  IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
+  IonList, IonListHeader, IonNote, IonMenuToggle, IonItem,
+  IonIcon, IonLabel, IonContent, IonMenu, IonButton,
 } from '@ionic/vue';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -43,7 +44,16 @@ import { useRoute } from 'vue-router';
 
 export default defineComponent({
   components: {
-    IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonContent, IonMenu,
+    IonList,
+    IonListHeader,
+    IonNote,
+    IonMenuToggle,
+    IonItem,
+    IonIcon,
+    IonLabel,
+    IonContent,
+    IonMenu,
+    IonButton,
   },
   setup() {
     const appPages = [

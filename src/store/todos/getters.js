@@ -9,7 +9,7 @@ const getters = {
     return getters.getAllTodos(state).filter((todo) => !todo.done);
   },
   getFavTodos(state) {
-    return state.todoList.filter((todo) => todo.favourite);
+    return state.todoList.filter((todo) => todo.favourite && !todo.deleted);
   },
   getDoneFavTodos(state) {
     return getters.getFavTodos(state).filter((todo) => todo.done);
@@ -18,7 +18,7 @@ const getters = {
     return getters.getFavTodos(state).filter((todo) => !todo.done);
   },
   getBookmarkTodos(state) {
-    return state.todoList.filter((todo) => todo.bookmark);
+    return state.todoList.filter((todo) => todo.bookmark && !todo.deleted);
   },
   getDoneBookmarkTodos(state) {
     return getters.getBookmarkTodos(state).filter((todo) => todo.done);
@@ -27,7 +27,7 @@ const getters = {
     return getters.getBookmarkTodos(state).filter((todo) => !todo.done);
   },
   getImportantTodo(state) {
-    return state.todoList.filter((todo) => todo.important);
+    return state.todoList.filter((todo) => todo.important && !todo.deleted);
   },
   getDoneImportantTodo(state) {
     return getters.getImportantTodo(state).filter((todo) => todo.done);
