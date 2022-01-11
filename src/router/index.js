@@ -11,11 +11,8 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   if (to.name) {
-    // Start the route progress bar.
-    // eslint-disable-next-line no-undef
     NProgress.start();
   }
-  // eslint-disable-next-line no-empty
   if (to.meta.requiresAuth && !store.getters['auth/isAuthenticated']) {
     next('/auth');
   } else if (to.meta.requiresUnauth && store.getters['auth/isAuthenticated']) {
@@ -23,12 +20,9 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-  // next();
 });
 
 router.afterEach(() => {
-  // Complete the animation of the route progress bar.
-  // eslint-disable-next-line no-undef
   NProgress.done();
 });
 

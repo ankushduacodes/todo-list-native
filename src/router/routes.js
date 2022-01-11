@@ -42,18 +42,4 @@ export default [
     component: () => import(/* webpackChunkName: "trash" */ '../views/TrashPage.vue'),
     meta: { requiresAuth: true },
   },
-  {
-    path: '/logout',
-    name: 'Logout',
-    // eslint-disable-next-line import/no-unresolved
-    component: () => import(/* webpackChunkName: "trash" */ '../views/LogoutPage.vue'),
-    meta: { requiresUnauth: true },
-  },
-  {
-    path: '/auth',
-    name: 'Auth',
-    // eslint-disable-next-line import/no-unresolved
-    component: () => import(/* webpackChunkName: "trash" */ '../views/AuthPage.vue'),
-    meta: { requiresUnauth: true },
-  },
 ];

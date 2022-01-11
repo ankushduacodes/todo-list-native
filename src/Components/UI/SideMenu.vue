@@ -100,20 +100,20 @@ export default defineComponent({
         mdIcon: trash,
       },
     ];
-    const route = useRoute();
+    const router = useRoute();
     const selectedIndex = ref(0);
 
-    function selectedRoute(rout) {
+    function selectedRoute(route) {
       return appPages.findIndex(
-        (page) => page?.title?.toLowerCase() === rout?.name?.toLowerCase(),
+        (page) => page?.title?.toLowerCase() === route?.name?.toLowerCase(),
       );
     }
 
-    watch(route, (oldVal, currVal) => {
+    watch(router, (oldVal, currVal) => {
       selectedIndex.value = selectedRoute(currVal);
     });
     onMounted(() => {
-      selectedIndex.value = selectedRoute(route);
+      selectedIndex.value = selectedRoute(router);
     });
 
     return {
