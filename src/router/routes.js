@@ -48,4 +48,16 @@ export default [
     component: () => import(/* webpackChunkName: "trash" */ '../views/AuthPage.vue'),
     meta: { requiresUnauth: true },
   },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import(/* webpackChunkName: "trash" */ '../views/RegisterPage.vue'),
+    meta: { requiresUnauth: true },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "trash" */ '../views/LoginPage.vue'),
+    meta: { requiresUnauth: true },
+  },
 ];
