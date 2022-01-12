@@ -1,36 +1,51 @@
 <template>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Todo List
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          Todo List
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-  <ion-content class="ion-padding-end ion-padding-start">
-    <form>
-      <ion-item class="ion-padding-top">
-        <ion-button @click="registerHandler"
-                    expand="block" color="primary">Register
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <span class="divider line one-line">or</span>
-      </ion-item>
-      <ion-item class="ion-padding-bottom">
-        <ion-button @click="loginHandler"
-                    expand="block" color="danger">Login
-        </ion-button>
-      </ion-item>
-    </form>
-  </ion-content>
+    <ion-content class="ion-padding-end ion-padding-start">
+      <form>
+        <ion-item class="ion-padding-top">
+          <ion-button @click="registerHandler"
+                      expand="block" color="primary">Register
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <span class="divider line one-line">or</span>
+        </ion-item>
+        <ion-item class="ion-padding-bottom">
+          <ion-button @click="loginHandler"
+                      expand="block" color="danger">Login
+          </ion-button>
+        </ion-item>
+      </form>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script>
+
+import {
+  IonPage, IonHeader, IonTitle, IonToolbar, IonContent, IonItem, IonButton,
+} from '@ionic/vue';
 import { useRouter } from 'vue-router';
 
 export default {
   name: 'AuthPage',
+  components: {
+    IonTitle,
+    IonHeader,
+    IonContent,
+    IonToolbar,
+    IonPage,
+    IonItem,
+    IonButton,
+  },
   setup() {
     const router = useRouter();
 
@@ -59,6 +74,10 @@ ion-item ion-button {
 
 ion-item span {
   margin: auto;
+}
+
+form {
+  margin-top: 20%;
 }
 
 </style>
