@@ -14,7 +14,7 @@
             </ion-item>
           </template>
           <ion-item>
-            <ion-button expand="block" class="ion-margin">Logout</ion-button>
+            <ion-button @click="logoutHandler" expand="block" class="ion-margin">Logout</ion-button>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -40,7 +40,8 @@ import {
   trash,
   add,
 } from 'ionicons/icons';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   components: {
@@ -100,7 +101,9 @@ export default defineComponent({
         mdIcon: trash,
       },
     ];
+    const store = useStore();
     const router = useRoute();
+    const Router = useRouter();
     const selectedIndex = ref(0);
 
     function selectedRoute(route) {
@@ -115,10 +118,15 @@ export default defineComponent({
     onMounted(() => {
       selectedIndex.value = selectedRoute(router);
     });
+    function logoutHandler() {
+      store.dispatch('auth/setLogin');
+      Router.push('/auth');
+    }
 
     return {
       appPages,
       selectedIndex,
+      logoutHandler,
     };
   },
 
