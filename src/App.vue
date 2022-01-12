@@ -1,12 +1,10 @@
 <template>
-  <ion-app v-if="loggedIn">
-    <ion-split-pane when="md" content-id="main-content">
+  <ion-app >
+    <ion-split-pane v-if="loggedIn" when="md" content-id="main-content">
       <side-menu></side-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
-  </ion-app>
-  <ion-app v-else>
-    <ion-router-outlet></ion-router-outlet>
+    <ion-router-outlet v-else></ion-router-outlet>
   </ion-app>
 </template>
 
@@ -21,7 +19,7 @@ import { defineComponent } from 'vue';
 import {
   add,
 } from 'ionicons/icons';
-import { useStore } from 'vuex';
+import { mapGetters } from 'vuex';
 // eslint-disable-next-line import/no-unresolved
 import SideMenu from '@/Components/UI/SideMenu.vue';
 
@@ -34,12 +32,14 @@ export default defineComponent({
     IonSplitPane,
     IonApp,
   },
+  computed: {
+    ...mapGetters({
+      loggedIn: 'auth/isAuthenticated',
+    }),
+  },
   setup() {
-    const store = useStore();
-    const loggedIn = store.getters['auth/isAuthenticated'];
     return {
       add,
-      loggedIn,
     };
   },
 });
