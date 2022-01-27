@@ -32,6 +32,11 @@ export default defineComponent({
       getPending: 'todos/getPendingAllTodos',
     }),
   },
+  mounted() {
+    if (!this.$store.getters['todos/getAllTodos'].length) {
+      this.$store.dispatch('todos/fetchAllTodo');
+    }
+  },
   setup() {
     const heading = 'All Tasks';
     return { heading };

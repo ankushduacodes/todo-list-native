@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import axiosInstance from '@/api';
+
 export default {
   addTodo({ commit }, payload) {
     commit('addNewTodo', payload);
@@ -31,5 +34,14 @@ export default {
   },
   unmarkFavourite({ commit }, payload) {
     commit('unmarkFav', payload);
+  },
+  async fetchAllTodo() {
+    let response;
+    try {
+      response = await axiosInstance.get('todo/allTodos');
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
