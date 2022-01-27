@@ -12,18 +12,19 @@
       <form @submit.prevent>
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input type="text" v-model="email" required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" required></ion-input>
+          <ion-input type="password" v-model="password" required></ion-input>
         </ion-item>
 
         <ion-row>
           <ion-col>
             <ion-button @click="loginHandler" type="submit"
-                        color="danger" expand="block">Sign In</ion-button>
+                        color="danger" expand="block">Sign In
+            </ion-button>
           </ion-col>
         </ion-row>
       </form>
@@ -41,16 +42,20 @@ import {
   IonLabel,
   IonPage,
   IonToolbar,
+  IonCol,
+  IonRow,
+  IonInput,
 } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { personCircle } from 'ionicons/icons';
 import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 
 export default defineComponent({
   data() {
     return {
+      email: '',
+      password: '',
+      inputErr: false,
       personCircle,
       getBackButtonText: () => {
         const win = window;
@@ -59,16 +64,26 @@ export default defineComponent({
       },
     };
   },
-  setup() {
-    const router = useRouter();
-    const store = useStore();
-    function loginHandler() {
-      store.dispatch('auth/setLogin');
-      router.push('/');
-    }
-    return {
-      loginHandler,
-    };
+  methods: {
+    validateData() {
+      if (!this.email.trim().length
+          || !this.password.trim().length
+          || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+        this.inputErr = true;
+      } else {
+        this.inputErr = false;
+      }
+    },
+    async loginHandler() {
+      this.validateData();
+      console.log(this.inputErr);
+      if (this.inputErr) {
+        return;
+      }
+      await this.$store.dispatch('auth/login', { email: this.email, password: this.password });
+      this.$router.push('/');
+    },
   },
   components: {
     IonBackButton,
@@ -79,6 +94,9 @@ export default defineComponent({
     IonLabel,
     IonPage,
     IonToolbar,
+    IonRow,
+    IonCol,
+    IonInput,
   },
 });
 </script>
