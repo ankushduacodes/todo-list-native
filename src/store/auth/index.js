@@ -10,6 +10,7 @@ export default {
   state() {
     return {
       isLoggedIn: false,
+      token: null,
       user: null,
     };
   },
