@@ -1,9 +1,11 @@
 import { createApp } from 'vue';
 import { IonicVue } from '@ionic/vue';
+import Toast, { POSITION } from 'vue-toastification';
 import App from './App.vue';
 import router from './router';
 // eslint-disable-next-line import/no-relative-packages
 import '../node_modules/nprogress/nprogress.css';
+import 'vue-toastification/dist/index.css';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -26,9 +28,15 @@ import './theme/variables.css';
 
 import store from './store';
 
+const toastOptions = {
+  position: POSITION.TOP_RIGHT,
+  timeout: 2000,
+};
+
 const app = createApp(App).use(store)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(Toast, toastOptions);
 
 router.isReady().then(() => {
   app.mount('#app');
