@@ -9,7 +9,6 @@ const headers = {
 };
 // eslint-disable-next-line import/prefer-default-export
 const axiosInstance = axios.create({
-  timeout: 2000,
   baseURL,
   headers,
 });
