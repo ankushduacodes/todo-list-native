@@ -2,8 +2,8 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-content>
       <ion-list id="inbox-list">
-        <ion-list-header>Todos</ion-list-header>
-        <ion-note>hi@ionicframework.com</ion-note>
+        <ion-list-header>{{userInfo.firstName + ' ' + userInfo.lastName}}</ion-list-header>
+        <ion-note>{{userInfo.email}}</ion-note>
         <ion-menu-toggle auto-hide="false">
           <template v-for="(p, i) in appPages" :key="i">
             <ion-item router-direction="root"
@@ -41,7 +41,7 @@ import {
   add,
 } from 'ionicons/icons';
 import { useRoute, useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { mapGetters, useStore } from 'vuex';
 
 export default defineComponent({
   components: {
@@ -55,6 +55,11 @@ export default defineComponent({
     IonContent,
     IonMenu,
     IonButton,
+  },
+  computed: {
+    ...mapGetters({
+      userInfo: 'auth/getUserInfo',
+    }),
   },
   setup() {
     const appPages = [
