@@ -12,7 +12,6 @@ export default {
         email: payload.email,
         password: payload.password,
       });
-      console.log(response);
       toast.success('Login successful');
       const { data } = response;
       const {
@@ -43,5 +42,16 @@ export default {
     commit('unsetUser');
     localStorage.removeItem('auth-token');
     localStorage.removeItem('user-info');
+  },
+
+  async register(context, payload) {
+    const toast = useToast();
+    try {
+      console.log(payload);
+      await axiosInstance.post('user/register', payload);
+      toast.success('Registration successful, Please login!...');
+    } catch (err) {
+      console.log(err);
+    }
   },
 };

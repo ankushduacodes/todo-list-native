@@ -9,30 +9,36 @@
     </ion-header>
 
     <ion-content>
-      <form>
+      <form @submit.prevent>
         <ion-item lines="full">
           <ion-label position="floating">First name</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input type="text" v-model="firstName" required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Last name</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input type="text" v-model="lastName" required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" required></ion-input>
+          <ion-input type="email" v-model="email" required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" required></ion-input>
+          <ion-input type="password" v-model="password" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" v-model="confirmPassword" required></ion-input>
         </ion-item>
 
         <ion-row>
           <ion-col>
-            <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+            <ion-button @click="registerHandler"
+                        type="submit" color="danger" expand="block">Sign Up</ion-button>
           </ion-col>
         </ion-row>
       </form>
@@ -50,6 +56,10 @@ import {
   IonLabel,
   IonPage,
   IonToolbar,
+  IonInput,
+  IonButton,
+  IonRow,
+  IonCol,
 } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { personCircle } from 'ionicons/icons';
@@ -59,6 +69,12 @@ export default defineComponent({
   data() {
     return {
       personCircle,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      inputErr: false,
       getBackButtonText: () => {
         const win = window;
         const mode = win && win.Ionic && win.Ionic.mode;
@@ -66,7 +82,33 @@ export default defineComponent({
       },
     };
   },
-  setup() {
+  // TODO add input feedback to the DOM
+  methods: {
+    validateData() {
+      this.inputErr = !this.email.trim().length
+          || !this.password.trim().length
+          || !this.firstName.trim().length
+          || !this.lastName.trim().length
+          || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
+          || (this.password !== this.confirmPassword);
+    },
+    async registerHandler() {
+      this.validateData();
+      console.log(this.inputErr);
+      if (this.inputErr) {
+        return;
+      }
+      const payload = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        confirmPassword: this.confirmPassword,
+      };
+      await this.$store.dispatch('auth/register', payload);
+      await this.$router.push('/login');
+    },
   },
   components: {
     IonBackButton,
@@ -77,6 +119,10 @@ export default defineComponent({
     IonLabel,
     IonPage,
     IonToolbar,
+    IonInput,
+    IonButton,
+    IonRow,
+    IonCol,
   },
 });
 </script>

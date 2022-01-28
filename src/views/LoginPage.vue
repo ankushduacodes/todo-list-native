@@ -65,16 +65,13 @@ export default defineComponent({
       },
     };
   },
+  // TODO add input feedback to the DOM
   methods: {
     validateData() {
-      if (!this.email.trim().length
+      this.inputErr = !this.email.trim().length
           || !this.password.trim().length
           || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
-        this.inputErr = true;
-      } else {
-        this.inputErr = false;
-      }
+          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
     },
     async loginHandler() {
       this.validateData();
