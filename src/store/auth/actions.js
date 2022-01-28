@@ -38,4 +38,10 @@ export default {
       commit('setUser', userInfo);
     }
   },
+
+  async logout({ commit }) {
+    commit('unsetUser');
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('user-info');
+  },
 };

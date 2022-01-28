@@ -2,8 +2,8 @@
   <ion-menu content-id="main-content" type="overlay">
     <ion-content>
       <ion-list id="inbox-list">
-        <ion-list-header>{{userInfo.firstName + ' ' + userInfo.lastName}}</ion-list-header>
-        <ion-note>{{userInfo.email}}</ion-note>
+        <ion-list-header>{{userInfo?.firstName + ' ' + userInfo?.lastName}}</ion-list-header>
+        <ion-note>{{userInfo?.email}}</ion-note>
         <ion-menu-toggle auto-hide="false">
           <template v-for="(p, i) in appPages" :key="i">
             <ion-item router-direction="root"
@@ -124,7 +124,7 @@ export default defineComponent({
       selectedIndex.value = selectedRoute(router);
     });
     function logoutHandler() {
-      store.dispatch('auth/setLogin');
+      store.dispatch('auth/logout');
       Router.push('/auth');
     }
 
