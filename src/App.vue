@@ -1,10 +1,10 @@
 <template>
   <ion-app >
-    <ion-split-pane v-if="loggedIn" when="md" content-id="main-content">
+    <ion-router-outlet v-if="!loggedIn"></ion-router-outlet>
+    <ion-split-pane when="md" content-id="main-content">
       <side-menu></side-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
-    <ion-router-outlet v-else></ion-router-outlet>
   </ion-app>
 </template>
 
@@ -36,6 +36,12 @@ export default defineComponent({
     ...mapGetters({
       loggedIn: 'auth/isAuthenticated',
     }),
+  },
+  created() {
+    this.$store.dispatch('auth/tryLogin');
+    if (this.loggedIn) {
+      this.$router.replace('/');
+    }
   },
   setup() {
     return {
