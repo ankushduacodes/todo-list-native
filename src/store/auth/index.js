@@ -9,8 +9,6 @@ export default {
   namespaced: true,
   state() {
     return {
-      isLoggedIn: false,
-      token: null,
       user: null,
     };
   },

@@ -45,6 +45,7 @@ import {
   IonCol,
   IonRow,
   IonInput,
+  IonButton,
 } from '@ionic/vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { personCircle } from 'ionicons/icons';
@@ -82,7 +83,7 @@ export default defineComponent({
         return;
       }
       await this.$store.dispatch('auth/login', { email: this.email, password: this.password });
-      this.$router.push('/');
+      await this.$router.push('/');
     },
   },
   components: {
@@ -97,6 +98,7 @@ export default defineComponent({
     IonRow,
     IonCol,
     IonInput,
+    IonButton,
   },
 });
 </script>
