@@ -1,11 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
 import allTasksPage from '../views/AllTasksPage.vue';
-// eslint-disable-next-line import/no-unresolved
-import AuthPage from '@/views/AuthPage.vue';
-// eslint-disable-next-line import/no-unresolved
-import RegisterPage from '@/views/RegisterPage.vue';
-// eslint-disable-next-line import/no-unresolved
-import LoginPage from '@/views/LoginPage.vue';
 
 export default [
   {
@@ -51,19 +45,19 @@ export default [
   {
     path: '/auth',
     name: 'Auth',
-    component: () => AuthPage,
+    component: () => import(/* webpackChunkName: "trash" */ '../views/AuthPage.vue'),
     meta: { requiresUnauth: true },
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => RegisterPage,
+    component: () => import(/* webpackChunkName: "trash" */ '../views/RegisterPage.vue'),
     meta: { requiresUnauth: true },
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => LoginPage,
+    component: () => import(/* webpackChunkName: "trash" */ '../views/LoginPage.vue'),
     meta: { requiresUnauth: true },
   },
 ];
