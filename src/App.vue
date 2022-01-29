@@ -1,7 +1,7 @@
 <template>
   <ion-app >
     <ion-router-outlet v-if="!loggedIn"></ion-router-outlet>
-    <ion-split-pane when="md" content-id="main-content">
+    <ion-split-pane v-else when="md" content-id="main-content">
       <side-menu></side-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
