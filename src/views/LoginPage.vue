@@ -73,6 +73,11 @@ export default defineComponent({
           || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
           || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
     },
+    resetInput() {
+      this.inputErr = false;
+      this.email = '';
+      this.password = '';
+    },
     async loginHandler() {
       this.validateData();
       console.log(this.inputErr);
@@ -80,6 +85,7 @@ export default defineComponent({
         return;
       }
       await this.$store.dispatch('auth/login', { email: this.email, password: this.password });
+      this.resetInput();
       await this.$router.push('/');
     },
   },

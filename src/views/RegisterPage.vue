@@ -93,6 +93,14 @@ export default defineComponent({
           || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
           || (this.password !== this.confirmPassword);
     },
+    resetInput() {
+      this.inputErr = false;
+      this.email = '';
+      this.password = '';
+      this.firstName = '';
+      this.confirmPassword = '';
+      this.lastName = '';
+    },
     async registerHandler() {
       this.validateData();
       console.log(this.inputErr);
@@ -107,6 +115,7 @@ export default defineComponent({
         confirmPassword: this.confirmPassword,
       };
       await this.$store.dispatch('auth/register', payload);
+      this.resetInput();
       await this.$router.push('/login');
     },
   },
