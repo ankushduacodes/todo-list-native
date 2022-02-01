@@ -1,3 +1,4 @@
+import { useToast } from 'vue-toastification';
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import axiosInstance from '@/api';
 
@@ -35,13 +36,19 @@ export default {
   unmarkFavourite({ commit }, payload) {
     commit('unmarkFav', payload);
   },
-  async fetchAllTodo() {
+  async fetchAllTodo({ commit }) {
     let response;
+    const toast = useToast();
     try {
       response = await axiosInstance.get('todo/allTodos');
       console.log(response);
+      const { data } = response;
+      const { todos } = data;
+      commit('setAllTodos', { todos });
+      console.log(todos);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
+      toast.error('Something went wrong while loading the todos. Please try logging out...');
     }
   },
 };

@@ -30,7 +30,7 @@ import store from './store';
 
 const toastOptions = {
   position: POSITION.TOP_RIGHT,
-  timeout: 2000,
+  timeout: 4000,
 };
 
 const app = createApp(App).use(store)

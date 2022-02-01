@@ -27,7 +27,6 @@ export default defineComponent({
   name: 'App',
   components: {
     SideMenu,
-    // eslint-disable-next-line vue/no-unused-components
     IonRouterOutlet,
     IonSplitPane,
     IonApp,
@@ -39,9 +38,6 @@ export default defineComponent({
   },
   created() {
     this.$store.dispatch('auth/tryLogin');
-    if (this.loggedIn) {
-      this.$router.replace('/');
-    }
   },
   setup() {
     return {

@@ -3,7 +3,7 @@
     <ion-list-header>
       <h4>{{ header }}</h4>
     </ion-list-header>
-    <template v-for="todo in todoList" :key="todo.id">
+    <template v-for="todo in todoList" :key="todo._id">
       <todo-list-item :todo="todo"></todo-list-item>
     </template>
   </ul>

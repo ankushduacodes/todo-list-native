@@ -1,11 +1,12 @@
 <template>
   <ion-item>
-    <ion-checkbox v-if="!todo.deleted" @click="todoDoneStateChange(todo)"
-                  :checked="todo.done"
+    <ion-checkbox v-if="!todo.isDeleted" @click="todoDoneStateChange(todo)"
+                  :checked="todo.isDone"
                   slot="start">
     </ion-checkbox>
-    <p :style="(todo.deleted || todo.done) ? {textDecoration: 'line-through'} : {}"
-       class="ion-text-wrap item-cover" :contenteditable="!(todo.done || todo.deleted)">
+    <!-- TODO set content editable properly with update action-->
+    <p :style="(todo.isDeleted || todo.isDone) ? {textDecoration: 'line-through'} : {}"
+       class="ion-text-wrap item-cover">
       {{ todo.item }}
     </p>
     <todo-action-button :todo="todo"></todo-action-button>
@@ -35,7 +36,7 @@ export default defineComponent({
     IonItem,
     IonCheckbox,
   },
-  setup() {
+  setup(props) {
     const store = useStore();
 
     async function todoDoneStateChange(todo) {
@@ -45,6 +46,7 @@ export default defineComponent({
         await store.dispatch('todos/markUndone', { todo });
       }
     }
+    console.log(props.todo);
 
     return {
       todoDoneStateChange,
