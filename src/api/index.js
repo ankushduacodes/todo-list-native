@@ -11,6 +11,7 @@ const headers = {
 const axiosInstance = axios.create({
   baseURL,
   headers,
+  timeout: 15000,
 });
 
 axiosInstance.interceptors.request.use(
@@ -19,6 +20,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   async (error) => {
+    NProgress.done();
     await Promise.reject(error);
   },
 );

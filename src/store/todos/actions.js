@@ -3,16 +3,15 @@ import { useToast } from 'vue-toastification';
 import axiosInstance from '@/api';
 
 export default {
-  addTodo({ commit }, payload) {
-    let res;
-    console.log(payload);
+  async addTodo({ commit }, payload) {
     try {
-      res = axiosInstance.post('todo/addTodo', payload.newTodo);
-      console.log(res);
+      await axiosInstance.post('todo/addTodo', payload.newTodo);
+      commit('addNewTodo', payload);
     } catch (err) {
       console.log(err.message);
+      const toast = useToast();
+      toast.error('Something went wrong while adding the todo');
     }
-    commit('addNewTodo', payload);
   },
   markDone({ commit }, payload) {
     commit('markTodoDone', payload);

@@ -36,7 +36,7 @@ export default defineComponent({
     IonItem,
     IonCheckbox,
   },
-  setup(props) {
+  setup() {
     const store = useStore();
 
     async function todoDoneStateChange(todo) {
@@ -46,7 +46,6 @@ export default defineComponent({
         await store.dispatch('todos/markUndone', { todo });
       }
     }
-    console.log(props.todo);
 
     return {
       todoDoneStateChange,

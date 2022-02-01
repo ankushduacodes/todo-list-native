@@ -33,7 +33,6 @@ export default {
     const token = localStorage.getItem('auth-token');
     const userInfo = JSON.parse(localStorage.getItem('user-info'));
     if (token && userInfo) {
-      console.log(userInfo);
       commit('setUser', userInfo);
     }
   },
