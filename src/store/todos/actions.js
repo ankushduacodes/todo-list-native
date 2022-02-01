@@ -13,11 +13,25 @@ export default {
       toast.error('Something went wrong while adding the todo');
     }
   },
-  markDone({ commit }, payload) {
-    commit('markTodoDone', payload);
+  async markDone({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId });
+      commit('markTodoDone', payload);
+    } catch (err) {
+      console.log(err.message);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  markUndone({ commit }, payload) {
-    commit('markTodoUndone', payload);
+  async markUndone({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId });
+      commit('markTodoUndone', payload);
+    } catch (err) {
+      console.log(err.message);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
   markImportant({ commit }, payload) {
     commit('markImp', payload);
