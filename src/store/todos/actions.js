@@ -4,6 +4,14 @@ import axiosInstance from '@/api';
 
 export default {
   addTodo({ commit }, payload) {
+    let res;
+    console.log(payload);
+    try {
+      res = axiosInstance.post('todo/addTodo', payload.newTodo);
+      console.log(res);
+    } catch (err) {
+      console.log(err.message);
+    }
     commit('addNewTodo', payload);
   },
   markDone({ commit }, payload) {
@@ -41,13 +49,11 @@ export default {
     const toast = useToast();
     try {
       response = await axiosInstance.get('todo/allTodos');
-      console.log(response);
       const { data } = response;
       const { todos } = data;
       commit('setAllTodos', { todos });
-      console.log(todos);
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
       toast.error('Something went wrong while loading the todos. Please try logging out...');
     }
   },

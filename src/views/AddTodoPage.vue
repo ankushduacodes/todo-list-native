@@ -39,8 +39,6 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 // eslint-disable-next-line import/no-unresolved
 import TheHeader from '@/Components/UI/TheHeader.vue';
-// eslint-disable-next-line import/extensions,import/no-unresolved
-import uuidv4 from '@/helpers/helpers';
 
 export default {
   name: 'AddTodoPage',
@@ -119,12 +117,13 @@ export default {
       }
       const newTodo = {
         item: todoInput.value,
-        id: uuidv4(),
-        done: false,
-        bookmark: !!bookmarkColor.value.length,
-        favourite: !!favouriteColor.value.length,
-        important: !!importantColor.value.length,
-        date: Date.now(),
+        isDone: false,
+        isBookmark: !!bookmarkColor.value.length,
+        isFavourite: !!favouriteColor.value.length,
+        isImportant: !!importantColor.value.length,
+        isDeleted: false,
+        // TODO add date field into todo schema on the backend;
+        // date: Date.now(),
       };
       resetForm();
       console.log(newTodo);

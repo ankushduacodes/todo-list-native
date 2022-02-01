@@ -40,7 +40,7 @@ export default defineComponent({
     const store = useStore();
 
     async function todoDoneStateChange(todo) {
-      if (!todo.done) {
+      if (!todo.isDone) {
         await store.dispatch('todos/markDone', { todo });
       } else {
         await store.dispatch('todos/markUndone', { todo });
