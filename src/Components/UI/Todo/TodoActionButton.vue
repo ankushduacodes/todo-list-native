@@ -137,7 +137,6 @@ export default defineComponent({
           role: 'cancel',
           id: 'cancel-button',
           handler: () => {
-            console.log('Cancel clicked');
           },
         },
       ];
@@ -147,9 +146,6 @@ export default defineComponent({
           buttons,
         });
       await actionSheet.present();
-
-      const { role, data } = await actionSheet.onDidDismiss();
-      console.log('onDidDismiss resolved with role and data', role, data);
     }
 
     return {

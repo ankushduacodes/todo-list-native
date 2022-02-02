@@ -126,7 +126,6 @@ export default {
         // date: Date.now(),
       };
       resetForm();
-      console.log(newTodo);
       await store.dispatch('todos/addTodo', { newTodo });
       router.push('/');
       // TODO get confirmation from above action and show a toast

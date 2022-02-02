@@ -80,7 +80,6 @@ export default defineComponent({
     },
     async loginHandler() {
       this.validateData();
-      console.log(this.inputErr);
       if (this.inputErr) {
         return;
       }

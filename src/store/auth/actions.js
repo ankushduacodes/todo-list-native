@@ -12,7 +12,6 @@ export default {
         email: payload.email,
         password: payload.password,
       });
-      toast.success('Login successful');
       const { data } = response;
       const {
         email, firstName, lastName, accessToken,
@@ -20,9 +19,9 @@ export default {
       const userInfo = {
         email, firstName, lastName, accessToken,
       };
-      localStorage.setItem('auth-token', accessToken);
-      localStorage.setItem('user-info', JSON.stringify(userInfo));
-      console.log(userInfo);
+      await localStorage.setItem('auth-token', accessToken);
+      await localStorage.setItem('user-info', JSON.stringify(userInfo));
+      toast.success('Login successful');
       commit('setUser', userInfo);
     } catch (err) {
       toast.error('Login failed. Please try again!...');
@@ -46,7 +45,6 @@ export default {
   async register(context, payload) {
     const toast = useToast();
     try {
-      console.log(payload);
       await axiosInstance.post('user/register', payload);
       toast.success('Registration successful, Please login!...');
     } catch (err) {

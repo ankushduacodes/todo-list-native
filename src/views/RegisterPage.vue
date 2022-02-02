@@ -103,7 +103,6 @@ export default defineComponent({
     },
     async registerHandler() {
       this.validateData();
-      console.log(this.inputErr);
       if (this.inputErr) {
         return;
       }
