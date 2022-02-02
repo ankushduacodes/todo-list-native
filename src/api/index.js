@@ -5,9 +5,8 @@ const baseURL = 'http://localhost:8000/api/v1/';
 const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
 };
-// eslint-disable-next-line import/prefer-default-export
+
 const axiosInstance = axios.create({
   baseURL,
   headers,
@@ -16,6 +15,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${localStorage.getItem('auth-token')}`;
     NProgress.start();
     return config;
   },
