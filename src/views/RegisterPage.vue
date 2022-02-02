@@ -176,4 +176,11 @@ h1 {
 p {
   line-height: 22px;
 }
+@media screen and (min-width: 1560px) {
+  ion-content {
+    --padding-start: 600px;
+    --padding-end: 600px;
+    --margin-top: 50px;
+  }
+}
 </style>

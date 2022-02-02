@@ -72,6 +72,18 @@ ion-item ion-button {
   min-height: 100%;
 }
 
+@media screen and (min-width: 560px){
+  ion-item ion-button {
+    margin: auto;
+    min-width: 40%;
+    min-height: 100%;
+  }
+  ion-content {
+    --padding-end: 50px;
+    --padding-start: 50px;
+  }
+}
+
 ion-item span {
   margin: auto;
 }

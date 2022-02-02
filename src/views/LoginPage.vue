@@ -8,7 +8,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content>
+    <ion-content class="ion-padding-end ion-padding-start">
       <form @submit.prevent>
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
@@ -145,5 +145,13 @@ h1 {
 
 p {
   line-height: 22px;
+}
+
+@media screen and (min-width: 1560px) {
+  ion-content {
+    --padding-start: 600px;
+    --padding-end: 600px;
+    --margin-top: 50px;
+  }
 }
 </style>

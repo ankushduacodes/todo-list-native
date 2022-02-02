@@ -63,11 +63,9 @@ export default defineComponent({
       userInfo: 'auth/getUserInfo',
     }),
   },
-  created() {
+  async created() {
     if (!this.$store.getters['todos/getAllTodos'].length) {
-      setTimeout(async () => {
-        await this.$store.dispatch('todos/fetchAllTodo');
-      }, 500);
+      await this.$store.dispatch('todos/fetchAllTodo');
     }
   },
   setup() {
