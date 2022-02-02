@@ -13,35 +13,35 @@ export default {
   },
   markImp({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.important = true;
+    target.isImportant = true;
   },
   unmarkImp({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.important = false;
+    target.isImportant = false;
   },
   markFav({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.favourite = true;
+    target.isFavourite = true;
   },
   unmarkFav({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.favourite = false;
+    target.isFavourite = false;
   },
   markBook({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.bookmark = true;
+    target.isBookmark = true;
   },
   unmarkBook({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.bookmark = false;
+    target.isBookmark = false;
   },
   deleted({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.deleted = true;
+    target.isDeleted = true;
   },
   restored({ todoList }, payload) {
     const target = todoList.find((todo) => todo.todoId === payload.todo.todoId);
-    target.deleted = false;
+    target.isDeleted = false;
   },
   setAllTodos({ todoList }, payload) {
     payload.todos.forEach((todo) => {
