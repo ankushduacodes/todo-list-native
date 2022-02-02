@@ -31,7 +31,7 @@ export default defineComponent({
 
     function deleteHandler(todo) {
       const payload = { todo };
-      if (todo.deleted) {
+      if (todo.isDeleted) {
         return store.dispatch('todos/unmarkDeleted', payload);
       }
       return store.dispatch('todos/markDeleted', payload);
@@ -39,7 +39,7 @@ export default defineComponent({
 
     function favouriteHandler(todo) {
       const payload = { todo };
-      if (todo.favourite) {
+      if (todo.isFavourite) {
         return store.dispatch('todos/unmarkFavourite', payload);
       }
       return store.dispatch('todos/markFavourite', payload);
@@ -47,7 +47,7 @@ export default defineComponent({
 
     function bookmarkHandler(todo) {
       const payload = { todo };
-      if (todo.bookmark) {
+      if (todo.isBookmark) {
         return store.dispatch('todos/unmarkBookmark', payload);
       }
       return store.dispatch('todos/markBookmark', payload);
@@ -55,7 +55,7 @@ export default defineComponent({
 
     function importantHandler(todo) {
       const payload = { todo };
-      if (todo.important) {
+      if (todo.isImportant) {
         return store.dispatch('todos/unmarkImportant', payload);
       }
       return store.dispatch('todos/markImportant', payload);
@@ -63,13 +63,13 @@ export default defineComponent({
 
     async function presentActionSheet() {
       const deviceInformation = getPlatforms();
-      const deleteBtn = props.todo.deleted ? 'Restore' : 'Delete';
-      const deleteIcon = props.todo.deleted ? arrowBackCircle : trash;
-      const FavBtn = props.todo.favourite ? 'Unfavourite' : 'Favourite';
-      const FavIcon = props.todo.favourite ? heartHalf : heart;
-      const ImpBtn = props.todo.important ? 'Unmark as Important' : 'Mark as Important';
-      const BookmarkBtn = props.todo.bookmark ? 'Remove Bookmark' : 'Bookmark';
-      const buttons = !props.todo.deleted ? [
+      const deleteBtn = props.todo.isDeleted ? 'Restore' : 'Delete';
+      const deleteIcon = props.todo.isDeleted ? arrowBackCircle : trash;
+      const FavBtn = props.todo.isFavourite ? 'Unfavourite' : 'Favourite';
+      const FavIcon = props.todo.isFavourite ? heartHalf : heart;
+      const ImpBtn = props.todo.isImportant ? 'Unmark as Important' : 'Mark as Important';
+      const BookmarkBtn = props.todo.isBookmark ? 'Remove Bookmark' : 'Bookmark';
+      const buttons = !props.todo.isDeleted ? [
         {
           text: deleteBtn,
           role: 'delete',
@@ -123,6 +123,18 @@ export default defineComponent({
           text: deleteBtn,
           role: 'delete',
           icon: deviceInformation[0] === 'iphone' ? '' : deleteIcon,
+          id: 'delete-button',
+          data: {
+            type: 'delete',
+          },
+          handler: () => {
+            deleteHandler(props.todo);
+          },
+        },
+        {
+          text: 'Delete Permanently',
+          role: 'delete',
+          icon: deviceInformation[0] === 'iphone' ? '' : trash,
           id: 'delete-button',
           data: {
             type: 'delete',
