@@ -28,34 +28,90 @@ export default {
       await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId, isDone: false });
       commit('markTodoUndone', payload);
     } catch (err) {
-      console.log(err.message);
+      console.error(err);
       const toast = useToast();
       toast.error('Something went wrong... Please try again.');
     }
   },
-  markImportant({ commit }, payload) {
-    commit('markImp', payload);
+  async markImportant({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markImportant', { todoId: payload.todo.todoId, isImportant: true });
+      commit('markImp', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  unmarkImportant({ commit }, payload) {
-    commit('unmarkImp', payload);
+  async unmarkImportant({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markImportant', { todoId: payload.todo.todoId, isImportant: false });
+      commit('unmarkImp', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  markBookmark({ commit }, payload) {
-    commit('markBook', payload);
+  async markBookmark({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markBookmark', { todoId: payload.todo.todoId, isBookmark: true });
+      commit('markBook', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  unmarkBookmark({ commit }, payload) {
-    commit('unmarkBook', payload);
+  async unmarkBookmark({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markBookmark', { todoId: payload.todo.todoId, isBookmark: false });
+      commit('unmarkBook', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  markDeleted({ commit }, payload) {
-    commit('deleted', payload);
+  async markDeleted({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markDeleted', { todoId: payload.todo.todoId, isDeleted: true });
+      commit('deleted', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  unmarkDeleted({ commit }, payload) {
-    commit('restored', payload);
+  async unmarkDeleted({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markDeleted', { todoId: payload.todo.todoId, isDeleted: false });
+      commit('restored', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  markFavourite({ commit }, payload) {
-    commit('markFav', payload);
+  async markFavourite({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markFavourite', { todoId: payload.todo.todoId, isFavourite: true });
+      commit('markFav', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
-  unmarkFavourite({ commit }, payload) {
-    commit('unmarkFav', payload);
+  async unmarkFavourite({ commit }, payload) {
+    try {
+      await axiosInstance.post('todo/markFavourite', { todoId: payload.todo.todoId, isFavourite: false });
+      commit('unmarkFav', payload);
+    } catch (err) {
+      console.error(err);
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
   },
   async fetchAllTodo({ commit }) {
     let response;
