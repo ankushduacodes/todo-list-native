@@ -27,8 +27,6 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       getAll: 'todos/getDeletedTodo',
-      getDone: 'todos/getDoneDeletedTodo',
-      getPending: 'todos/getPendingDeletedTodo',
     }),
   },
   setup() {
