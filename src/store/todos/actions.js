@@ -70,4 +70,7 @@ export default {
       toast.error('Something went wrong while loading the todos. Please try logging out...');
     }
   },
+  clearTodoList({ commit }) {
+    commit('unsetTodos');
+  },
 };

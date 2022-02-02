@@ -48,4 +48,8 @@ export default {
       todoList.push(todo);
     });
   },
+  unsetTodos(state) {
+    // eslint-disable-next-line no-param-reassign
+    state.todoList = [];
+  },
 };
