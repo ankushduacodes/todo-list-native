@@ -63,6 +63,13 @@ export default defineComponent({
       userInfo: 'auth/getUserInfo',
     }),
   },
+  created() {
+    if (!this.$store.getters['todos/getAllTodos'].length) {
+      setTimeout(async () => {
+        await this.$store.dispatch('todos/fetchAllTodo');
+      }, 500);
+    }
+  },
   setup() {
     const appPages = [
       {
@@ -125,9 +132,10 @@ export default defineComponent({
     onMounted(() => {
       selectedIndex.value = selectedRoute(router);
     });
-    function logoutHandler() {
-      store.dispatch('auth/logout');
-      Router.push('/auth');
+    async function logoutHandler() {
+      await store.dispatch('auth/logout');
+      await store.dispatch('todos/clearTodoList');
+      await Router.push('/auth');
     }
 
     return {
