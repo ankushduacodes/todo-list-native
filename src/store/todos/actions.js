@@ -15,7 +15,7 @@ export default {
   },
   async markDone({ commit }, payload) {
     try {
-      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId });
+      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId, isDone: true });
       commit('markTodoDone', payload);
     } catch (err) {
       console.log(err.message);
@@ -25,7 +25,7 @@ export default {
   },
   async markUndone({ commit }, payload) {
     try {
-      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId });
+      await axiosInstance.post('todo/markDone', { todoId: payload.todo.todoId, isDone: false });
       commit('markTodoUndone', payload);
     } catch (err) {
       console.log(err.message);
