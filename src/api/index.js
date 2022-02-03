@@ -1,7 +1,7 @@
 import axios from 'axios';
 import NProgress from 'nprogress';
 
-const baseURL = 'http://localhost:8000/api/v1/';
+const baseURL = 'https://todo-list-app-bknd.herokuapp.com/api/v1/';
 const headers = {
   Accept: 'application/json',
   'Content-Type': 'application/json',

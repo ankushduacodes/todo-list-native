@@ -27,6 +27,7 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 import store from './store';
+import './registerServiceWorker';
 
 const toastOptions = {
   position: POSITION.TOP_RIGHT,
