@@ -1,13 +1,15 @@
 import { createRouter } from '@ionic/vue-router';
 // eslint-disable-next-line
 import NProgress from 'nprogress';
-import { createWebHashHistory } from 'vue-router';
+import { createWebHashHistory, createWebHistory } from 'vue-router';
 import routes from './routes';
 // eslint-disable-next-line import/extensions,import/no-unresolved,no-unused-vars
 import store from '@/store';
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: process.env.IS_ELECTRON
+    ? createWebHashHistory(process.env.BASE_URL)
+    : createWebHistory(process.env.BASE_URL),
   routes,
 });
 // eslint-disable-next-line no-unused-vars
