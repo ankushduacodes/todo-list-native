@@ -126,6 +126,19 @@ export default {
       toast.error('Something went wrong while loading the todos. Please try logging out...');
     }
   },
+
+  // eslint-disable-next-line no-unused-vars
+  async permaDelete({ commit }, payload) {
+    console.log(payload);
+    try {
+      const res = await axiosInstance.delete(`todo/deleteTodo/${payload.todo.todoId}`);
+      console.log(res);
+    } catch (err) {
+      const toast = useToast();
+      toast.error('Something went wrong... Please try again.');
+    }
+  },
+
   clearTodoList({ commit }) {
     commit('unsetTodos');
   },

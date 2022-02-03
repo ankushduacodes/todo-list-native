@@ -61,6 +61,11 @@ export default defineComponent({
       return store.dispatch('todos/markImportant', payload);
     }
 
+    function permaDeleteHandler(todo) {
+      const payload = { todo };
+      return store.dispatch('todos/permaDelete', payload);
+    }
+
     async function presentActionSheet() {
       const deviceInformation = getPlatforms();
       const deleteBtn = props.todo.isDeleted ? 'Restore' : 'Delete';
@@ -140,7 +145,7 @@ export default defineComponent({
             type: 'delete',
           },
           handler: () => {
-            deleteHandler(props.todo);
+            permaDeleteHandler(props.todo);
           },
         },
         {
