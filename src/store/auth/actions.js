@@ -49,6 +49,7 @@ export default {
       toast.success('Registration successful, Please login!...');
     } catch (err) {
       console.log(err);
+      toast.error('Registration unsuccessful due to a server error!... Please try again');
     }
   },
 };
