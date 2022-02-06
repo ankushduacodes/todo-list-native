@@ -38,7 +38,8 @@
         <ion-row>
           <ion-col>
             <ion-button @click="registerHandler"
-                        type="submit" color="danger" expand="block">Sign Up</ion-button>
+                        type="submit" color="danger" expand="block">Sign Up
+            </ion-button>
           </ion-col>
         </ion-row>
       </form>
@@ -113,9 +114,13 @@ export default defineComponent({
         password: this.password,
         confirmPassword: this.confirmPassword,
       };
-      await this.$store.dispatch('auth/register', payload);
-      this.resetInput();
-      await this.$router.push('/login');
+      try {
+        await this.$store.dispatch('auth/register', payload);
+        this.resetInput();
+        await this.$router.push('/login');
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   components: {
@@ -176,6 +181,7 @@ h1 {
 p {
   line-height: 22px;
 }
+
 @media screen and (min-width: 1560px) {
   ion-content {
     --padding-start: 600px;
