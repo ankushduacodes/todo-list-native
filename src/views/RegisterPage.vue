@@ -12,27 +12,39 @@
       <form @submit.prevent>
         <ion-item lines="full">
           <ion-label position="floating">First name</ion-label>
-          <ion-input type="text" v-model="firstName" required></ion-input>
+          <ion-input type="text" @blur="validateFname" v-model="firstName" required></ion-input>
+          <span ref="spanFname" class="invis-span">
+            Please enter a valid first name of at least 2 characters</span>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Last name</ion-label>
-          <ion-input type="text" v-model="lastName" required></ion-input>
+          <ion-input type="text" @blur="validateLname" v-model="lastName" required></ion-input>
+          <span ref="spanLname" class="invis-span">
+            Please enter a valid last name of at least 2 character</span>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" v-model="email" required></ion-input>
+          <ion-input type="email" @blur="validateEmail" v-model="email" required></ion-input>
+          <span ref="spanEmail" class="invis-span">Please enter a valid email</span>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" v-model="password" required></ion-input>
+          <ion-input type="password" @blur="validatePassword"
+                     v-model="password" required></ion-input>
+          <span ref="spanPassword" class="invis-span">
+            Please enter a valid at least 8 character password with capital letter,
+             lowercase letter, a symbol and numbers
+          </span>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Confirm Password</ion-label>
           <ion-input type="password" v-model="confirmPassword" required></ion-input>
+          <span ref="spanConfirmPassword" @blur="validateConfirmPassword"
+                class="invis-span">Passwords do not match</span>
         </ion-item>
 
         <ion-row>
@@ -75,7 +87,11 @@ export default defineComponent({
       email: '',
       password: '',
       confirmPassword: '',
-      inputErr: false,
+      inputErrEmail: false,
+      inputErrPassword: false,
+      inputErrConfirmPassword: false,
+      inputErrFname: false,
+      inputErrLname: false,
       getBackButtonText: () => {
         const win = window;
         const mode = win && win.Ionic && win.Ionic.mode;
@@ -83,19 +99,64 @@ export default defineComponent({
       },
     };
   },
-  // TODO add input feedback to the DOM
   methods: {
-    validateData() {
-      this.inputErr = !this.email.trim().length
-          || !this.password.trim().length
-          || !this.firstName.trim().length
-          || !this.lastName.trim().length
-          || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
-          || (this.password !== this.confirmPassword);
+    validateEmail() {
+      if (!this.email.trim().length || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+        this.inputErrEmail = true;
+        this.$refs.spanEmail.classList.add('show-span');
+        this.$refs.spanEmail.classList.remove('invis-span');
+      } else {
+        this.inputErrEmail = false;
+        this.$refs.spanEmail.classList.remove('show-span');
+        this.$refs.spanEmail.classList.add('invis-span');
+      }
+    },
+    validateFname() {
+      if (this.firstName.trim().length < 2) {
+        this.inputErrFname = true;
+        this.$refs.spanFname.classList.add('show-span');
+        this.$refs.spanFname.classList.remove('invis-span');
+      } else {
+        this.inputErrFname = false;
+        this.$refs.spanFname.classList.remove('show-span');
+        this.$refs.spanFname.classList.add('invis-span');
+      }
+    },
+    validateLname() {
+      if (this.lastName.trim().length < 2) {
+        this.inputErrLname = true;
+        this.$refs.spanLname.classList.add('show-span');
+        this.$refs.spanLname.classList.remove('invis-span');
+      } else {
+        this.inputErrLname = false;
+        this.$refs.spanLname.classList.remove('show-span');
+        this.$refs.spanLname.classList.add('invis-span');
+      }
+    },
+    validatePassword() {
+      if (!this.password.trim().length || !this.password.trim().match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+        this.inputErrPassword = true;
+        this.$refs.spanPassword.classList.add('show-span');
+        this.$refs.spanPassword.classList.remove('invis-span');
+      } else {
+        this.inputErrPassword = false;
+        this.$refs.spanPassword.classList.remove('show-span');
+        this.$refs.spanPassword.classList.add('invis-span');
+      }
+    },
+    validateConfirmPassword() {
+      if (this.password.trim() !== this.confirmPassword.trim()) {
+        this.inputErrConfirmPassword = true;
+        this.$refs.spanConfirmPassword.classList.add('show-span');
+        this.$refs.spanConfirmPassword.classList.remove('invis-span');
+      } else {
+        this.inputErrConfirmPassword = false;
+        this.$refs.spanConfirmPassword.classList.remove('show-span');
+        this.$refs.spanConfirmPassword.classList.add('invis-span');
+      }
     },
     resetInput() {
-      this.inputErr = false;
+      this.inputErrEmail = false;
       this.email = '';
       this.password = '';
       this.firstName = '';
@@ -103,8 +164,16 @@ export default defineComponent({
       this.lastName = '';
     },
     async registerHandler() {
-      this.validateData();
-      if (this.inputErr) {
+      this.validateEmail();
+      this.validatePassword();
+      this.validateFname();
+      this.validateLname();
+      this.validateConfirmPassword();
+      if (this.inputErrEmail
+          || this.inputErrPassword
+          || this.inputErrFname
+          || this.inputErrLname
+          || this.inputErrConfirmPassword) {
         return;
       }
       const payload = {
@@ -188,5 +257,14 @@ p {
     --padding-end: 600px;
     --margin-top: 50px;
   }
+}
+
+.show-span {
+  color: red;
+  padding: 0;
+}
+
+.invis-span {
+  display: none;
 }
 </style>

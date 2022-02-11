@@ -61,7 +61,8 @@ export default defineComponent({
     return {
       email: '',
       password: '',
-      inputErr: false,
+      inputErrEmail: false,
+      inputErrPassword: false,
       personCircle,
       getBackButtonText: () => {
         const win = window;
@@ -70,39 +71,39 @@ export default defineComponent({
       },
     };
   },
-  // TODO add input feedback to the DOM
   methods: {
     validateEmail() {
       if (!this.email.trim().length || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-        this.inputErr = true;
+        this.inputErrEmail = true;
         this.$refs.spanEmail.classList.add('show-span');
         this.$refs.spanEmail.classList.remove('invis-span');
       } else {
-        this.inputErr = false;
+        this.inputErrEmail = false;
         this.$refs.spanEmail.classList.remove('show-span');
         this.$refs.spanEmail.classList.add('invis-span');
       }
     },
     validatePassword() {
       if (!this.password.trim().length || !this.password.trim().match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
-        this.inputErr = true;
+        this.inputErrPassword = true;
         this.$refs.spanPassword.classList.add('show-span');
         this.$refs.spanPassword.classList.remove('invis-span');
       } else {
-        this.inputErr = false;
+        this.inputErrPassword = false;
         this.$refs.spanPassword.classList.remove('show-span');
         this.$refs.spanPassword.classList.add('invis-span');
       }
     },
     resetInput() {
-      this.inputErr = false;
+      this.inputErrEmail = false;
+      this.inputErrPassword = false;
       this.email = '';
       this.password = '';
     },
     async loginHandler() {
       this.validateEmail();
       this.validatePassword();
-      if (this.inputErr) {
+      if (this.inputErrEmail || this.inputErrPassword) {
         return;
       }
       await this.$store.dispatch('auth/login', { email: this.email, password: this.password });
@@ -183,6 +184,6 @@ p {
 }
 
 .invis-span {
-  visibility: hidden;
+  display: none;
 }
 </style>
