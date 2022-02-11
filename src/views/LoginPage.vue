@@ -12,12 +12,17 @@
       <form @submit.prevent>
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" v-model="email" required></ion-input>
+          <ion-input type="email" v-model="email" required></ion-input>
+          <span ref="spanEmail" class="invis-span">Please enter a valid email</span>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>
           <ion-input type="password" v-model="password" required></ion-input>
+          <span ref="spanPassword" class="invis-span">
+            Please enter a valid at least 8 character password with capital letter,
+             lowercase letter, a symbol and numbers
+          </span>
         </ion-item>
 
         <ion-row>
@@ -67,11 +72,27 @@ export default defineComponent({
   },
   // TODO add input feedback to the DOM
   methods: {
-    validateData() {
-      this.inputErr = !this.email.trim().length
-          || !this.password.trim().length
-          || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-          || !this.password.trim().match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+    validateEmail() {
+      if (!this.email.trim().length || !this.email.trim().match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+        this.inputErr = true;
+        this.$refs.spanEmail.classList.add('show-span');
+        this.$refs.spanEmail.classList.remove('invis-span');
+      } else {
+        this.inputErr = false;
+        this.$refs.spanEmail.classList.remove('show-span');
+        this.$refs.spanEmail.classList.add('invis-span');
+      }
+    },
+    validatePassword() {
+      if (!this.password.trim().length || !this.password.trim().match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+        this.inputErr = true;
+        this.$refs.spanPassword.classList.add('show-span');
+        this.$refs.spanPassword.classList.remove('invis-span');
+      } else {
+        this.inputErr = false;
+        this.$refs.spanPassword.classList.remove('show-span');
+        this.$refs.spanPassword.classList.add('invis-span');
+      }
     },
     resetInput() {
       this.inputErr = false;
@@ -79,7 +100,8 @@ export default defineComponent({
       this.password = '';
     },
     async loginHandler() {
-      this.validateData();
+      this.validateEmail();
+      this.validatePassword();
       if (this.inputErr) {
         return;
       }
@@ -153,5 +175,14 @@ p {
     --padding-end: 600px;
     --margin-top: 50px;
   }
+}
+
+.show-span {
+  color: red;
+  padding: 0;
+}
+
+.invis-span {
+  visibility: hidden;
 }
 </style>

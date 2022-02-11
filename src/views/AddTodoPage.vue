@@ -112,7 +112,6 @@ export default {
     async function addNewTodo() {
       checkInput();
       if (!todoInput.value.length) {
-        // TODO show a toast
         return;
       }
       const newTodo = {
