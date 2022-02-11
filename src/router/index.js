@@ -18,10 +18,10 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
   }
   const user = localStorage.getItem('user-info');
-  if (to.meta.requiresUnauth && store.getters['auth/isAuthenticated']) {
-    next('/alltasks');
-  } else if (!user && to.meta.requiresAuth) {
+  if (!user && to.meta.requiresAuth) {
     next('/auth');
+  } else if (to.meta.requiresUnauth && user) {
+    next('/alltasks');
   } else {
     next();
   }
